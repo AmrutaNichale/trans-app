@@ -6,9 +6,22 @@ from flask import Flask, redirect, url_for, request, render_template, session
 
 app = Flask(__name__)
 
+mydb = mysql.connector.connect(
+  host="aimysqldbsvraz.mysql.database.azure.com",
+  user="mysqladmin@aimysqldbsvraz",
+  password="Server@1",
+  database="trans"
+)
+
+mycursor = mydb.cursor()
+
+
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+     mycursor.execute("SELECT * FROM result1")
+
+    myresult = mycursor.fetchall()
+    return render_template('index.html', myresult=myresult)
 
 @app.route('/', methods=['POST'])
 def index_post():
@@ -46,7 +59,16 @@ def index_post():
     # Retrieve the translation
     translated_text = translator_response[0]['translations'][0]['text']
 
-    # Call render template, passing the translated text,
+    
+     # store in the Database
+     sql = "INSERT INTO result1 (result, text, lang) VALUES (%s, %s, %s)"
+    val = (translated_text, original_text, target_language)
+    mycursor.execute(sql, val)
+
+    mydb.commit()
+
+
+# Call render template, passing the translated text,
     # original text, and target language to the template
     return render_template(
         'results.html',
