@@ -11,13 +11,13 @@
     <div class="container">
         <h2>Results</h2>
         <div>
-            <strong>text:</strong> {{text }}
+            <strong>text:</strong> {{ original_text }}
         </div>
         <div>
-            <strong>result:</strong> {{result}}
+            <strong>result:</strong> {{ translated_text }}
         </div>
         <div>
-            <strong>lang:</strong> {{lang }}
+            <strong>lang:</strong> {{ target_language }}
         </div>
         <div>
             <a href="{{ url_for('index') }}">Try another one!</a>
