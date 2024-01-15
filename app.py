@@ -1,4 +1,5 @@
 import requests, os, uuid, json
+import mysql.connector
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -18,10 +19,11 @@ mycursor = mydb.cursor()
 
 @app.route('/', methods=['GET'])
 def index():
-     mycursor.execute("SELECT * FROM result1")
+    mycursor.execute("SELECT * FROM result1")
 
     myresult = mycursor.fetchall()
     return render_template('index.html', myresult=myresult)
+
 
 @app.route('/', methods=['POST'])
 def index_post():
@@ -59,16 +61,14 @@ def index_post():
     # Retrieve the translation
     translated_text = translator_response[0]['translations'][0]['text']
 
-    
-     # store in the Database
-     sql = "INSERT INTO result1 (result, text, lang) VALUES (%s, %s, %s)"
+    # Store in the Database
+    sql = "INSERT INTO result1 (result, text, lang) VALUES (%s, %s, %s)"
     val = (translated_text, original_text, target_language)
     mycursor.execute(sql, val)
 
     mydb.commit()
 
-
-# Call render template, passing the translated text,
+    # Call render template, passing the translated text,
     # original text, and target language to the template
     return render_template(
         'results.html',
