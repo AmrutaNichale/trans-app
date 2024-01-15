@@ -4,7 +4,7 @@
 <br>
 <h2>Project Details</h2>
 <b>Project Demo URL :</b> https://myaitranslatorazapp.azurewebsites.net/ <br>
-<b>Demo Video URL :</b> <br>
+<b>Demo Video URL :</b> https://drive.google.com/file/d/1V0i89R1XDO-Nz8IcBN2qJwiiE62ADxn-/view?usp=sharing <br>
 <b>Github Repository URL :</b>https://github.com/AmrutaNichale/trans-app <br>
 <b>Industry :</b> Lifestyle and Technology<br>
 <h2>Azure Services Used</h2>
