@@ -29,7 +29,7 @@ def index():
 def index_post():
     # Read the values from the form
     original_text = request.form['text']
-    translated_text = request.form['ttext']
+   
     target_language = request.form['language']
 
     # Load the values from .env
