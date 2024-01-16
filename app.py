@@ -62,7 +62,7 @@ def index_post():
     translated_text = translator_response[0]['translations'][0]['text']
 
     # Store in the Database
-    sql = "INSERT INTO result1 (result, text, lang) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO result (translated_text, original_text, target_language) VALUES (%s, %s, %s)"
     val = (translated_text, original_text, target_language)
     mycursor.execute(sql, val)
 
